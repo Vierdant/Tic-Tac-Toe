@@ -6,6 +6,8 @@ html,body {
     text-align: center;
     color: white;
     font-family: 'Motiva Sans', sans-serif;
+    content-visibility: auto;
+    user-select: none;
 }
 
 .container {

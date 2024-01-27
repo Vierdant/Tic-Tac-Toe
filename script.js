@@ -131,6 +131,7 @@ const handleCellClick = (event) => {
     const img = document.createElement("img");
     img.src = `./assets/ttt-${currentTurn}.png`;
     img.alt = `${currentTurn}`;
+    img.draggable = false;
 
     cell.appendChild(img);
     cell.setAttribute("marked", true);
