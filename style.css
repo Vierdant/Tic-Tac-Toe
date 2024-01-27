@@ -1,7 +1,17 @@
+/* Import the Motiva Sans font */
 @import url('https://fonts.cdnfonts.com/css/motiva-sans');
 
-html,body {
-    margin: 0px;
+/* Define CSS variables for reusable values */
+:root {
+    --primary-color: #7289da;
+    --secondary-color: #969799;
+    --background-color: #424549;
+    --cell-color: #5d6166;
+}
+
+/* Reset default margin and background */
+html, body {
+    margin: 0;
     background: linear-gradient(to right, #1e2124, #282b30);
     text-align: center;
     color: white;
@@ -10,44 +20,50 @@ html,body {
     user-select: none;
 }
 
+/* Center the container */
 .container {
-    background-color: #424549;
+    background-color: var(--background-color);
     width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 8vh auto;
     padding: 8vh;
     border-radius: 15px;
 }
 
+/* Grid layout */
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 15vh);
     grid-template-rows: repeat(3, 15vh);
     gap: 5px;
     justify-content: center;
-    background-color: #969799f3;
+    background-color: var(--secondary-color);
     border-radius: 20px;
-    box-shadow: 0px 10px 20px #1e2124;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+/* Text indicating whose turn it is */
 #turntext {
-    padding: 5px 15px 5px 15px;
-    background-color: #7289da;
+    padding: 5px 15px;
+    background-color: var(--primary-color);
     border-radius: 25px;
 }
 
+/* Individual cell styling */
 .cell {
-    background-color: #5d6166;
+    background-color: var(--cell-color);
 }
 
+/* Hover effect for cells */
 .cell:hover:not([marked]) {
-    background-color: #7289da;
+    background-color: var(--primary-color);
 }
 
+/* Image inside cell */
 .cell > img {
     width: 100%;
 }
 
+/* End scene styling */
 .end {
     visibility: hidden;
     display: none;
@@ -58,27 +74,30 @@ html,body {
     margin-top: 5px;
 }
 
+/* End scene image */
 .end > img { 
     margin-top: -20px;
     width: 20vh;
 }
 
+/* Play again button */
 .end > button {
-    background-color: #7289da;
-    border: 2px solid #7289da;
+    background-color: var(--primary-color);
+    border: 2px solid var(--primary-color);
     border-radius: 25px;
-    padding: 2vh 5vh 2vh 5vh;
+    padding: 2vh 5vh;
     font-size: 2vh;
     color: white;
     font-family: 'Motiva Sans', sans-serif;
 }
 
+/* Button hover effect */
 .end > button:hover {
-    background-color: #97a5da;
-    border: 2px solid #97a5da;
-    color: white;
+    background-color: #97a5da; /* Adjusted for better contrast */
+    border-color: #97a5da; /* Adjusted for better contrast */
 }
 
+/* Utility classes */
 .hide {
     visibility: hidden;
 }
@@ -92,22 +111,24 @@ html,body {
     display: flex;
 }
 
-#cell1 {
+/* Rounded borders for specific cells */
+.cell[data-cell-id="1"] {
     border-top-left-radius: 15px;
 }
 
-#cell3 {
+.cell[data-cell-id="3"] {
     border-top-right-radius: 15px;
 }
 
-#cell7 {
+.cell[data-cell-id="7"] {
     border-bottom-left-radius: 15px;
 }
 
-#cell9 {
+.cell[data-cell-id="9"] {
     border-bottom-right-radius: 15px;
 }
 
+/* Media query for smaller screens */
 @media only screen and (max-width: 600px) {
     .grid {
         grid-template-columns: repeat(3, 8vh);

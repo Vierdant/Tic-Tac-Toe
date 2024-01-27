@@ -1,23 +1,23 @@
-const grid = document.getElementById("board");
-const turnText = document.getElementById("turntext");
-const endScene = document.getElementById("endscene");
-const endSceneStatus = document.getElementById("endscene-status");
-const endSceneImg = document.getElementById("endscene-img");
-const playAgainButton = document.getElementById("playagain");
-const player = {
-    x : "x",
-    o : "o"
+const GRID = document.getElementById("board");
+const TURN_TEXT = document.getElementById("turntext");
+const END_SCENE = document.getElementById("endscene");
+const END_SCENE_STATUS = document.getElementById("endscene-status");
+const END_SCENE_IMG = document.getElementById("endscene-img");
+const PLAY_AGAIN_BUTTON = document.getElementById("playagain");
+const PLAYER = {
+    X: "x",
+    O: "o"
 };
-const gameStatus = {
-    running: "running",
-    won: "won",
-    draw: "draw"
+const GAME_STATUS = {
+    RUNNING: "running",
+    WON: "won",
+    DRAW: "draw"
 };
-let board = new Array(9).fill("");
-let currentTurn = Math.random() > 0.5 ? player.x : player.o;
-let currentStatus = gameStatus.running;
+let board = new Array(9).fill(""); // Represents the Tic Tac Toe board
+let currentTurn = Math.random() > 0.5 ? PLAYER.X : PLAYER.O; // Represents the current player's turn
+let currentStatus = GAME_STATUS.RUNNING; // Represents the current game status
 
-const winningConditions = [
+const WINNING_CONDITIONS = [
     [1, 2, 3], // top row
     [4, 5, 6], // middle row
     [7, 8, 9], // bottom row
@@ -26,116 +26,118 @@ const winningConditions = [
     [3, 6, 9], // right column
     [1, 5, 9], // left diagonal
     [3, 5, 7] // right diagonal
-]
+];
 
+// Updates the text indicating whose turn it is
 const updateTurnText = () => {
-    turnText.textContent = `Turn: ${currentTurn.toUpperCase()}`
-}
+    TURN_TEXT.textContent = `Turn: ${currentTurn.toUpperCase()}`;
+};
 
+// Initializes the game board
 const init = () => {
     const cells = [];
     for (let i = 0; i < 9; i++) {
-        var cell = document.createElement("dev")
-        cell.classList.add("cell")
-        cell.id = `cell${i + 1}`
-        grid.appendChild(cell);
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        cell.dataset.cellId = i + 1;
+        GRID.appendChild(cell);
         cells.push(cell);
     }
-    
+
     cells.forEach((cell) => {
-        cell.addEventListener("click", handleCellClick)
+        cell.addEventListener("click", handleCellClick);
     });
 
     updateTurnText();
-}
+};
 
+// Sets the value of a cell on the board
 const setBoardCell = (cell, value) => {
     board[cell - 1] = value;
-}
+};
 
+// Retrieves the value of a cell on the board
 const getBoardCell = (cell) => {
     return board[cell - 1];
-}
+};
 
+// Checks if the board is full
 const isBoardFull = () => {
-    return board.filter((cell) => cell === "").length === 0;
-}
+    return board.every(cell => cell !== "");
+};
 
+// Switches the turn to the next player
 const switchTurn = () => {
-    currentTurn = currentTurn === player.x ? player.o : player.x;
+    currentTurn = currentTurn === PLAYER.X ? PLAYER.O : PLAYER.X;
     updateTurnText();
-}
+};
 
+// Checks the current game status (running, won, draw)
 const checkStatus = () => {
-    for (let i = 0; i < winningConditions.length; i++) {
-        let count = 0;
-        for (let k = 0; k < 3; k++) {
-            let value = getBoardCell(winningConditions[i][k])
-            if (value === currentTurn) {
-                count++;
-            }
-        }
-
-        if (count === 3) {
-            currentStatus = gameStatus.won;
+    for (const condition of WINNING_CONDITIONS) {
+        const [a, b, c] = condition;
+        if (getBoardCell(a) === currentTurn && getBoardCell(b) === currentTurn 
+            && getBoardCell(c) === currentTurn) {
+            currentStatus = GAME_STATUS.WON;
             return true;
         }
     }
 
     if (isBoardFull()) {
-        currentStatus = gameStatus.draw;
+        currentStatus = GAME_STATUS.DRAW;
         return true;
     }
 
     return false;
-}
+};
 
+// Resets the game board and status
 const reset = () => {
-    grid.replaceChildren();
-
-    turnText.classList.remove("hide");
-    endSceneImg.classList.remove("hide");
-    grid.classList.remove("erase");
-    endScene.classList.remove("show-hidden");
+    GRID.innerHTML = "";
+    TURN_TEXT.classList.remove("hide");
+    END_SCENE_IMG.classList.remove("hide");
+    GRID.classList.remove("erase");
+    END_SCENE.classList.remove("show-hidden");
     board = new Array(9).fill("");
-    currentStatus = gameStatus.running;
-
+    currentStatus = GAME_STATUS.RUNNING;
     init();
-}
+};
 
+// Ends the game and displays the result
 const end = () => {
-    turnText.classList.add("hide");
-    if (currentStatus === gameStatus.draw) {
-        endSceneStatus.textContent = "Draw!";
-        endSceneImg.classList.add("hide");
+    TURN_TEXT.classList.add("hide");
+    if (currentStatus === GAME_STATUS.DRAW) {
+        END_SCENE_STATUS.textContent = "Draw!";
+        END_SCENE_IMG.classList.add("hide");
     } else {
-        endSceneImg.src = `./assets/ttt-${currentTurn}.png`;
+        END_SCENE_IMG.src = `./assets/ttt-${currentTurn}.png`;
     }
 
-    grid.classList.add("erase");
-    endScene.classList.add("show-hidden");
-}
+    GRID.classList.add("erase");
+    END_SCENE.classList.add("show-hidden");
+};
 
+// Handles the click event on a cell
 const handleCellClick = (event) => {
-    if (currentStatus != gameStatus.running) {
+    if (currentStatus !== GAME_STATUS.RUNNING) {
         return;
     }
 
-    let cell = event.srcElement;
-    const id = cell.id.slice(-1);
+    const cell = event.target;
+    const cellId = cell.dataset.cellId;
 
-    if (getBoardCell(id) != "") {
+    if (getBoardCell(cellId) !== "") {
         return;
     }
 
     const img = document.createElement("img");
     img.src = `./assets/ttt-${currentTurn}.png`;
-    img.alt = `${currentTurn}`;
+    img.alt = currentTurn;
     img.draggable = false;
 
     cell.appendChild(img);
     cell.setAttribute("marked", true);
-    setBoardCell(id, currentTurn);
+    setBoardCell(cellId, currentTurn);
 
     if (checkStatus()) {
         end();
@@ -143,11 +145,10 @@ const handleCellClick = (event) => {
     }
 
     switchTurn();
-}
+};
 
-playAgainButton.addEventListener("click", reset);
+// Resets the game when the "Play Again" button is clicked
+PLAY_AGAIN_BUTTON.addEventListener("click", reset);
 
+// Initializes the game when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", init);
-
-
-
