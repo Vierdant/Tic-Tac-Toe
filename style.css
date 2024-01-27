@@ -1,0 +1,109 @@
+@import url('https://fonts.cdnfonts.com/css/motiva-sans');
+
+html,body {
+    margin: 0px;
+    -moz-background: linear-gradient(to right, #1e2124, #282b30);
+    -webkit-background: linear-gradient(to right, #1e2124, #282b30);
+    -o-background: linear-gradient(to right, #1e2124, #282b30);
+    background: linear-gradient(to right, #1e2124, #282b30);
+    text-align: center;
+    color: white;
+    font-family: 'Motiva Sans', sans-serif;
+}
+
+.container {
+    background-color: #424549;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8vh;
+    border-radius: 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 15vh);
+    grid-template-rows: repeat(3, 15vh);
+    gap: 5px;
+    justify-content: center;
+    background-color: #969799f3;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px #1e2124;
+}
+
+#turntext {
+    padding: 5px 15px 5px 15px;
+    background-color: #7289da;
+    border-radius: 25px;
+}
+
+.cell {
+    background-color: #5d6166;
+}
+
+.cell:hover:not([marked]) {
+    background-color: #7289da;
+}
+
+.cell > img {
+    width: 100%;
+}
+
+.end {
+    visibility: hidden;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5vh;
+    margin-top: 5px;
+}
+
+.end > img { 
+    margin-top: -20px;
+    width: 20vh;
+}
+
+.end > button {
+    background-color: #7289da;
+    border: 2px solid #7289da;
+    border-radius: 25px;
+    padding: 10px 25px 10px 25px;
+    color: white;
+    font-family: 'Motiva Sans', sans-serif;
+}
+
+.end > button:hover {
+    background-color: #97a5da;
+    border: 2px solid #97a5da;
+    color: white;
+}
+
+.hide {
+    visibility: hidden;
+}
+
+.erase {
+    display: none;
+}
+
+.show-hidden {
+    visibility: visible;
+    display: flex;
+}
+
+#cell1 {
+    border-top-left-radius: 15px;
+}
+
+#cell3 {
+    border-top-right-radius: 15px;
+}
+
+#cell7 {
+    border-bottom-left-radius: 15px;
+}
+
+#cell9 {
+    border-bottom-right-radius: 15px;
+}
