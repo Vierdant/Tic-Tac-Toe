@@ -109,7 +109,7 @@ const end = () => {
         endSceneStatus.textContent = "Draw!";
         endSceneImg.classList.add("hide");
     } else {
-        endSceneImg.src = `/assets/ttt-${currentTurn}.png`;
+        endSceneImg.src = `./assets/ttt-${currentTurn}.png`;
     }
 
     grid.classList.add("erase");
@@ -129,7 +129,7 @@ const handleCellClick = (event) => {
     }
 
     const img = document.createElement("img");
-    img.src = `/assets/ttt-${currentTurn}.png`;
+    img.src = `./assets/ttt-${currentTurn}.png`;
     img.alt = `${currentTurn}`;
 
     cell.appendChild(img);
