@@ -2,9 +2,6 @@
 
 html,body {
     margin: 0px;
-    -moz-background: linear-gradient(to right, #1e2124, #282b30);
-    -webkit-background: linear-gradient(to right, #1e2124, #282b30);
-    -o-background: linear-gradient(to right, #1e2124, #282b30);
     background: linear-gradient(to right, #1e2124, #282b30);
     text-align: center;
     color: white;
@@ -68,7 +65,8 @@ html,body {
     background-color: #7289da;
     border: 2px solid #7289da;
     border-radius: 25px;
-    padding: 10px 25px 10px 25px;
+    padding: 2vh 5vh 2vh 5vh;
+    font-size: 2vh;
     color: white;
     font-family: 'Motiva Sans', sans-serif;
 }
@@ -106,4 +104,15 @@ html,body {
 
 #cell9 {
     border-bottom-right-radius: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(3, 8vh);
+        grid-template-rows: repeat(3, 8vh);
+    }
+
+    .end {
+        margin: 2vh;
+    }
 }
