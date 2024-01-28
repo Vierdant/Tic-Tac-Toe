@@ -7,6 +7,9 @@
 
 /* Reset default margin and background */
 html, body {
+    display: grid;
+    place-items: center;
+    width: 100%;
     margin: 0;
     background: linear-gradient(to right, #1e2124, #282b30);
     text-align: center;
@@ -120,7 +123,6 @@ footer {
     gap: 10px;
     text-align: center;
     place-content: center;
-    margin-top: 10vh;
 }
 
 footer > p > a {
@@ -154,10 +156,6 @@ footer > p > a:visited {
 
     body {
         font-size: 5vh;
-    }
-    
-    footer {
-        margin-top: auto;
     }
 
     .cell {
