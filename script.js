@@ -1,4 +1,4 @@
-const GRID = document.getElementById("board");
+const GRID = document.getElementById("grid");
 const TURN_TEXT = document.getElementById("turntext");
 const END_SCENE = document.getElementById("endscene");
 const END_SCENE_STATUS = document.getElementById("endscene-status");
@@ -30,7 +30,7 @@ const WINNING_CONDITIONS = [
 
 // Updates the text indicating whose turn it is
 const updateTurnText = () => {
-    TURN_TEXT.textContent = `Turn: ${currentTurn.toUpperCase()}`;
+    TURN_TEXT.textContent = `Player ${currentTurn.toUpperCase()}'s Turn`;
 };
 
 // Initializes the game board
@@ -96,7 +96,7 @@ const reset = () => {
     GRID.innerHTML = "";
     TURN_TEXT.classList.remove("hide");
     END_SCENE_IMG.classList.remove("hide");
-    GRID.classList.remove("erase");
+    GRID.classList.remove("display-none");
     END_SCENE.classList.remove("show-hidden");
     board = new Array(9).fill("");
     currentStatus = GAME_STATUS.RUNNING;
@@ -106,14 +106,16 @@ const reset = () => {
 // Ends the game and displays the result
 const end = () => {
     TURN_TEXT.classList.add("hide");
+    
     if (currentStatus === GAME_STATUS.DRAW) {
         END_SCENE_STATUS.textContent = "Draw!";
         END_SCENE_IMG.classList.add("hide");
     } else {
+        END_SCENE_STATUS.textContent = "Game Won!"
         END_SCENE_IMG.src = `./assets/ttt-${currentTurn}.png`;
     }
 
-    GRID.classList.add("erase");
+    GRID.classList.add("display-none");
     END_SCENE.classList.add("show-hidden");
 };
 

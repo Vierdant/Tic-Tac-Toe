@@ -3,24 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Author: Vierdant, Simple Tic-Tac-Toe game that runs locally.">
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <link rel="icon" href="./assets/ttt-x.ico" type="image/x-icon"/>
     <title>Tic Tac Toe</title>
+    <link rel="preconnect" href="https://fonts.cdnfonts.com"/>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/motiva-sans"/>
+    <link rel="icon" href="./assets/ttt-x.ico" type="image/x-icon"/>
+
+    <meta name="description" content="Author: Vierdant, Simple Tic-Tac-Toe game that runs locally.">
+    <script
+    src="https://kit.fontawesome.com/d96fb9c1e6.js"
+    crossorigin="anonymous">
+    </script>
+    <script src="script.js" type="text/javascript" defer></script>
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
-    <h2><span id="turntext">Turn: X</span></h2>
-    <div class="container">
-        <div class="grid" id="board">
-            
+    <main>
+        <h1>Tic Tac Toe</h1>
+        <h2><span id="turntext">Turn: X</span></h2>
+        <div class="container">
+            <div class="grid" id="grid">
+                
+            </div>
+            <div class="end" id="endscene">
+                <h3><span id="endscene-status">Game Won!</span></h3>
+                <img id="endscene-img" src="./assets/ttt-x.png" alt="x won" draggable="false" class="">
+                <button id="playagain">Play Again</button>
+            </div>
         </div>
-        <div class="end" id="endscene">
-            <h3><span id="endscene-status">Game Won!</span></h3>
-            <img id="endscene-img" src="./assets/ttt-x.png" alt="x won" draggable="false">
-            <button id="playagain">Play Again</button>
-        </div>
-    </div>
-    <script src="script.js" type="text/javascript"></script>
+    </main>
+
+    <footer>
+        <p>
+            Check out this project on
+            <a href="https://github.com/Vierdant/Tic-Tac-Toe"
+                >GitHub! <i class="fa-brands fa-github"></i
+            ></a>
+        </p>
+        <p>
+            Copyright <i class="fa-regular fa-copyright"></i> 2024
+            Aaron Khalili
+        </p>
+    </footer>
 </body>
 </html>
